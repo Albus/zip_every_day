@@ -20,8 +20,8 @@ exit /b
     ::            - COLOR   [in] - цвет собщения
     ::            - MASSAGE [in] - текст сообщения
 
-    if exist "%WORK_DIR%\bin\cecho.exe" (
-        "%WORK_DIR%\bin\cecho.exe" %~1 "%~2"
+    if exist "%~dp0bin\cecho.exe" (
+        "%~dp0bin\cecho.exe" %~1 "%~2"
     ) else ( echo %~2 )
 
 exit /b
