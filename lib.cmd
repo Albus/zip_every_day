@@ -1,4 +1,6 @@
-@echo off & chcp 65001 > nul & call:%* & goto:eof
+@echo off & chcp 65001 > nul
+call:normalize_path WORK_DIR "%~dp0"
+call:%* & goto:eof
 
 
 
