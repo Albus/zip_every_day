@@ -5,20 +5,25 @@ call:%* & goto:eof
 
 
 :normalize_path
+
     :: Нормализует путь файловой системы
     :: Параметры: VAR "PATH"
     ::            - VAR  [out] - имя переменной, в которую нужно пометсть результат
     ::            - PATH [in]  - путь файловой системы
+    
     set "%~1=%~f2"
+    
 exit /b
 
 
 
 :echo
+
     :: Выводит сообщение
     :: Параметры: COLOR "MESSAGE"
     ::            - COLOR   [in] - цвет собщения
     ::            - MASSAGE [in] - текст сообщения
+    
     setlocal
     call:normalize_path ECHO_BIN "%WORK_DIR%\bin\cecho.exe"
     if exist "%ECHO_BIN%" (
@@ -31,6 +36,7 @@ exit /b
 
 
 :jdate2date
+
     :: converts julian days to gregorian date format
     :: Параметры: JD YYYY MM DD
     ::            - JD   [in]  - julian days
@@ -56,6 +62,7 @@ exit /b
 
 
 :jdate
+
     :: converts a date string to julian day number with respect to regional date format
     :: Параметры: JD DateStr
     ::            - JD      [out,opt] - julian days
