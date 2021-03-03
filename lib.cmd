@@ -19,10 +19,12 @@ exit /b
     :: Параметры: COLOR "MESSAGE"
     ::            - COLOR   [in] - цвет собщения
     ::            - MASSAGE [in] - текст сообщения
-
-    if exist "%~dp0bin\cecho.exe" (
-        "%~dp0bin\cecho.exe" %~1 "%~2"
+    setlocal
+    call:normalize_path ECHO_BIN "%WORK_DIR%\bin\cecho.exe"
+    if exist "%ECHO_BIN%" (
+        "%ECHO_BIN%" %~1 "%~2"
     ) else ( echo %~2 )
+    endlocal
 
 exit /b
 
