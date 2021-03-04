@@ -1,5 +1,5 @@
-@echo off & setlocal EnableDelayedExpansion & chcp 65001 > nul
-
+@echo off & setlocal EnableDelayedExpansion & pushd "%~dp0" & chcp 65001 > nul
+call lib.cmd normalize_path WORK_DIR "%~dp0"
 call lib.cmd jdate DATE_NOW
 
 :parse
@@ -33,8 +33,8 @@ for /l %%D in (%DATE_START%,-1,%DATE_FINISH%) do (
     set "DEST=%DEST%\!TAC_YYYY!\!TAC_MM!\!NAME!"
     call lib.cmd normalize_path DEST "!DEST!"
     2>nul mkdir "!DEST!"
-    call "archive.cmd" -src "%SRC%" -name "!DEST!" -tac !TAC_YYYY!!TAC_MM!!TAC_DD! -tbc !TBC_YYYY!!TBC_MM!!TBC_DD!
+    call "archive.cmd" -src "%SRC%" -name "!DEST!" -tac !TAC_YYYY!!TAC_MM!!TAC_DD! -tbc !TBC_YYYY!!TBC_MM!!TBC_DD! --y
     echo.
 )
 
-endlocal & goto:eof
+endlocal & popd & goto:eof

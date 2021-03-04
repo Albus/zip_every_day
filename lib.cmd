@@ -1,6 +1,5 @@
-@echo off & chcp 65001 > nul
-call:normalize_path WORK_DIR "%~dp0"
-call:%* & goto:eof
+@echo off & pushd "%~dp0" & chcp 65001 > nul
+call:%* & popd & goto:eof
 
 
 
@@ -25,6 +24,7 @@ exit /b
     ::            - MASSAGE [in] - текст сообщения
     
     setlocal
+    call:normalize_path WORK_DIR "%~dp0"
     call:normalize_path ECHO_BIN "%WORK_DIR%\bin\cecho.exe"
     if exist "%ECHO_BIN%" (
         "%ECHO_BIN%" %~1 "%~2"

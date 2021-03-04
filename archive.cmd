@@ -1,5 +1,5 @@
-@echo off & setlocal EnableDelayedExpansion & pushd & set "WORK_DIR=%~dp0"
-set "WORK_DIR=%WORK_DIR:~0,-1%" & cd /d "%WORK_DIR%" & chcp 65001 > nul
+@echo off & setlocal EnableDelayedExpansion & pushd "%~dp0" & chcp 65001 > nul
+call lib.cmd normalize_path WORK_DIR "%~dp0"
 
 :parse
     if    "%~1"==""       goto:validate
